@@ -1,0 +1,26 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Projects">
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl font-bold text-center mb-12">Projects</h1>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-card border border-border rounded-lg p-6 flex flex-col">
+          <h3 class="text-xl font-semibold mb-2">Stock Market Forecasting in the Digital Age</h3>
+          <p class="text-muted-foreground mb-4">Compared AR/ARIMA/SARIMAX with LSTM for stock price forecasting on Yahoo Finance data (2015–2020). Analyzed performance across phases like COVID-19, balancing interpretability and predictive power.</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-2 py-1 bg-primary/10 text-primary rounded text-sm">Python</span>
+            <span class="px-2 py-1 bg-primary/10 text-primary rounded text-sm">Time Series</span>
+            <span class="px-2 py-1 bg-primary/10 text-primary rounded text-sm">ARIMA</span>
+            <span class="px-2 py-1 bg-primary/10 text-primary rounded text-sm">SARIMAX</span>
+            <span class="px-2 py-1 bg-primary/10 text-primary rounded text-sm">LSTM</span>
+            <span class="px-2 py-1 bg-primary/10 text-primary rounded text-sm">Keras</span>
+          </div>
+          <a href="https://github.com/anikdascodes/collage_stock_project" target="_blank" rel="noopener" class="mt-auto inline-flex items-center justify-center px-3 py-2 rounded-md bg-primary text-primary-foreground hover:opacity-90 text-sm">View Code</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

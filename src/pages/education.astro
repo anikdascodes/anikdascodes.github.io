@@ -1,0 +1,66 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Education">
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl font-bold text-center mb-3">Education</h1>
+      <p class="text-center text-muted-foreground mb-12">Degrees and certifications</p>
+
+      <div class="max-w-4xl mx-auto space-y-10">
+        <section aria-labelledby="formal-education">
+          <h2 id="formal-education" class="text-xl font-semibold text-headings mb-4">Formal education</h2>
+          <ul class="space-y-6">
+            <li class="bg-card border border-border rounded-lg p-6">
+              <div class="flex items-start justify-between gap-4 mb-2">
+                <div>
+                  <h3 class="text-lg font-semibold">BSc. Data Science</h3>
+                  <p class="text-primary font-medium">Maulana Abul Kalam Azad University of Technology, West Bengal</p>
+                </div>
+                <div class="text-sm text-muted-foreground shrink-0">Sep 2022 – Jul 2025</div>
+              </div>
+              <div class="text-sm text-muted-foreground mb-4">CGPA: <span class="font-medium text-foreground">8.3</span></div>
+              <p class="text-muted-foreground">Completed a 3-year BSc in Data Science with a strong foundation in statistics, machine learning, data analysis, and visualization.</p>
+            </li>
+
+            <li class="bg-card border border-border rounded-lg p-6">
+              <div class="flex items-start justify-between gap-4 mb-2">
+                <div>
+                  <h3 class="text-lg font-semibold">Higher Secondary (Science)</h3>
+                  <p class="text-primary font-medium">Gournagar High School — WBCHSE</p>
+                </div>
+                <div class="text-sm text-muted-foreground shrink-0">Jul 2022</div>
+              </div>
+              <div class="text-sm text-muted-foreground mb-4">Percentage: <span class="font-medium text-foreground">64.40%</span></div>
+              <p class="text-muted-foreground">Focused on Mathematics, Physics, Chemistry, Computer Science, Bengali, and English.</p>
+            </li>
+
+            <li class="bg-card border border-border rounded-lg p-6">
+              <div class="flex items-start justify-between gap-4 mb-2">
+                <div>
+                  <h3 class="text-lg font-semibold">Secondary</h3>
+                  <p class="text-primary font-medium">Gournagar High School — WBBSE</p>
+                </div>
+                <div class="text-sm text-muted-foreground shrink-0">Jul 2020</div>
+              </div>
+              <div class="text-sm text-muted-foreground mb-4">Percentage: <span class="font-medium text-foreground">78.86%</span></div>
+              <p class="text-muted-foreground">Built a strong foundation across languages and quantitative subjects.</p>
+            </li>
+          </ul>
+        </section>
+
+        <section aria-labelledby="certifications">
+          <h2 id="certifications" class="text-xl font-semibold text-headings mb-4">Certifications</h2>
+          <ul class="space-y-3 list-disc pl-5 text-muted-foreground">
+            <li>Python Programming Fundamentals — Microsoft — <a href="https://www.coursera.org/account/accomplishments/verify/14NUFGSP66LP" target="_blank" rel="noopener" class="text-primary underline">Verify</a></li>
+            <li>Data Analysis and Visualization with Python — Microsoft — <a href="https://www.coursera.org/account/accomplishments/verify/PVOY0YGZPDUD" target="_blank" rel="noopener" class="text-primary underline">Verify</a></li>
+            <li>Automation and Scripting with Python — Microsoft — <a href="https://www.coursera.org/account/accomplishments/verify/8CQF4VOLD7KS" target="_blank" rel="noopener" class="text-primary underline">Verify</a></li>
+            <li>Introduction to Data Analytics — Meta — <a href="https://www.coursera.org/account/accomplishments/verify/4BWBS67J5FZW" target="_blank" rel="noopener" class="text-primary underline">Verify</a></li>
+            <li>Data Analytics Course with Generative AI — Simplilearn — <a href="https://www.coursera.org/account/accomplishments/verify/MDKXMSCBVO35" target="_blank" rel="noopener" class="text-primary underline">Verify</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

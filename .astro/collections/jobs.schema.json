@@ -1,0 +1,51 @@
+{
+  "$ref": "#/definitions/jobs",
+  "definitions": {
+    "jobs": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "from": {
+          "type": "number"
+        },
+        "to": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string",
+              "enum": [
+                "Now"
+              ]
+            }
+          ]
+        },
+        "url": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "company",
+        "location",
+        "from",
+        "to",
+        "url"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

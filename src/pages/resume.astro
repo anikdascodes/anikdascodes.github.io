@@ -1,0 +1,27 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const pdfPath = '/resume.pdf';
+---
+
+<BaseLayout title="Resume">
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between mb-6">
+        <h1 class="text-4xl font-bold">Resume</h1>
+        <div class="flex gap-2">
+          <a href={pdfPath} target="_blank" rel="noopener" class="px-3 py-2 rounded-md border border-border hover:bg-muted/60 text-sm">Open</a>
+          <a href={pdfPath} download class="px-3 py-2 rounded-md bg-primary text-primary-foreground hover:opacity-90 text-sm">Download</a>
+        </div>
+      </div>
+
+      <div class="bg-card border border-border rounded-xl overflow-hidden">
+        <iframe src={pdfPath} class="w-full h-[80vh]" title="Resume PDF" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+
+
+

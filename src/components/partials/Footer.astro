@@ -1,0 +1,26 @@
+---
+import Container from '@/components/Container.astro';
+---
+
+<Container as='footer' class='pt-24'>
+  <div class="flex flex-col items-center gap-4">
+    <nav aria-label="Footer" class="text-sm">
+      <ul class="flex items-center gap-4 text-muted-foreground">
+        <li><a href="/" class="hover:text-foreground transition-colors">Home</a></li>
+        <li><a href="/writing" class="hover:text-foreground transition-colors">Writing</a></li>
+        <li><a href="/projects" class="hover:text-foreground transition-colors">Projects</a></li>
+        <li><a href="/education" class="hover:text-foreground transition-colors">Education</a></li>
+        <li><a href="/resume" class="hover:text-foreground transition-colors">Resume</a></li>
+      </ul>
+    </nav>
+    <div class="flex items-center gap-4 text-sm text-muted-foreground">
+      <a href="mailto:dasanik01736@gmail.com" class="hover:text-foreground transition-colors">Email</a>
+      <a href="https://github.com/anikdascodes" target="_blank" rel="noopener" class="hover:text-foreground transition-colors">GitHub</a>
+      <a href="https://www.linkedin.com/in/anikdascodes/" target="_blank" rel="noopener" class="hover:text-foreground transition-colors">LinkedIn</a>
+    </div>
+    <p class="text-center text-muted-foreground text-sm">
+      &copy; {new Date().getFullYear()} {" "}
+      <span class="text-foreground">{import.meta.env.SITE ? new URL(import.meta.env.SITE).hostname : 'Anik Das'}</span>
+    </p>
+  </div>
+</Container>
