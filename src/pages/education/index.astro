@@ -20,7 +20,7 @@ const { Content } = await render(educationEntry);
 const { education = [], courses = [] } = educationEntry.data;
 ---
 
-<BaseLayout title={PAGES.education.title}>
+<BaseLayout title={PAGES.education.title} description={PAGES.education.subtitle}>
     <header class="page-header">
         <h1 class="page-title">{PAGES.education.title}</h1>
         <p class="page-subtitle">{PAGES.education.subtitle}</p>

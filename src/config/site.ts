@@ -5,7 +5,7 @@ export const SITE: SiteConfig = {
     author: "Anik Das",
     desc: "Personal portfolio and blog of Anik Das — Data Science & AI student from Kolkata, India.",
     title: "Anik Das",
-    ogImage: "avatar.png",
+    ogImage: "og-image.png",
     postPerPage: 5,
     favicon: "/favicon.png",
     lang: "en",

@@ -10,7 +10,7 @@ if (PAGES.contact.isActive === false) {
 const activeSocials = SOCIALS.filter((s) => s.isActive);
 ---
 
-<BaseLayout title={PAGES.contact.title}>
+<BaseLayout title={PAGES.contact.title} description={PAGES.contact.subtitle}>
     <header class="page-header">
         <h1 class="page-title">{PAGES.contact.title}</h1>
         <p class="page-subtitle">{PAGES.contact.subtitle}</p>

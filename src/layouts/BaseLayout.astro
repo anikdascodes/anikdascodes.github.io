@@ -1,5 +1,5 @@
 ---
-import { SITE, THEME_CONFIG, ANALYTICS, THEMES } from "../config";
+import { SITE, THEME_CONFIG, ANALYTICS, THEMES, SOCIALS } from "../config";
 import { ClientRouter } from "astro:transitions";
 import LeftSidebar from "../components/layout/LeftSidebar.astro";
 import RightMain from "../components/layout/RightMain.astro";
@@ -42,8 +42,35 @@ const jsonLd = {
     "@type": "Person",
     name: SITE.author,
     url: SITE.website,
-    jobTitle: "Developer",
+    image: new URL("avatar.png", SITE.website).toString(),
+    jobTitle: "Data Science & AI Student",
     description: SITE.desc,
+    address: {
+        "@type": "PostalAddress",
+        addressLocality: "Kolkata",
+        addressRegion: "West Bengal",
+        addressCountry: "IN",
+    },
+    alumniOf: [
+        {
+            "@type": "CollegeOrUniversity",
+            name: "Maulana Abul Kalam Azad University of Technology (MAKAUT)",
+        },
+        {
+            "@type": "CollegeOrUniversity",
+            name: "BITS Pilani Digital",
+        },
+    ],
+    knowsAbout: [
+        "Data Science",
+        "Machine Learning",
+        "Artificial Intelligence",
+        "Python",
+        "Web Development",
+    ],
+    sameAs: SOCIALS.filter(
+        (s) => s.isActive && !s.href.startsWith("mailto:"),
+    ).map((s) => s.href),
 };
 ---
 
@@ -110,12 +137,18 @@ const jsonLd = {
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content={ogType} />
         <meta property="og:url" content={Astro.url} />
+        <meta property="og:site_name" content={SITE.title} />
+        <meta property="og:locale" content="en_US" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={new URL(ogImage, Astro.url)} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={`${SITE.author} — portfolio`} />
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:creator" content="@AnikCodes" />
         <meta property="twitter:url" content={Astro.url} />
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
