@@ -1,0 +1,141 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Icon from "../../components/ui/Icon.astro";
+import { PAGES } from "../../config";
+
+if (PAGES.blog.isActive === false) {
+    return Astro.redirect("/404");
+}
+
+// Posts are pulled from Hashnode's RSS feed at build time.
+// A scheduled GitHub Actions rebuild keeps this list fresh (see .github/workflows).
+const HASHNODE_BLOG = "https://codeanik.hashnode.dev";
+const HASHNODE_PROFILE = "https://hashnode.com/@codeanik";
+const RSS_URL = `${HASHNODE_BLOG}/rss.xml`;
+const MAX_POSTS = 12;
+
+interface HashnodePost {
+    title: string;
+    link: string;
+    date?: string;
+    description: string;
+}
+
+function extractTag(block: string, tag: string): string {
+    const match = block.match(
+        new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`),
+    );
+    if (!match) return "";
+    return match[1]
+        .replace(/^\s*<!\[CDATA\[/, "")
+        .replace(/\]\]>\s*$/, "")
+        .trim();
+}
+
+function formatDate(pubDate: string): string | undefined {
+    const date = new Date(pubDate);
+    if (isNaN(date.getTime())) return undefined;
+    return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    });
+}
+
+let posts: HashnodePost[] = [];
+let feedError = false;
+
+try {
+    const res = await fetch(RSS_URL);
+    if (!res.ok) throw new Error(`RSS feed returned ${res.status}`);
+    const xml = await res.text();
+
+    const items = xml.match(/<item>[\s\S]*?<\/item>/g) || [];
+    posts = items.slice(0, MAX_POSTS).map((item) => {
+        const rawDescription = extractTag(item, "description");
+        const description = rawDescription
+            .replace(/<[^>]+>/g, " ")
+            .replace(/\s+/g, " ")
+            .trim();
+        return {
+            title: extractTag(item, "title"),
+            link: extractTag(item, "link"),
+            date: formatDate(extractTag(item, "pubDate")),
+            description:
+                description.length > 240
+                    ? `${description.slice(0, 240)}…`
+                    : description,
+        };
+    });
+} catch (err) {
+    feedError = true;
+    console.error("Failed to fetch Hashnode RSS feed:", err);
+}
+---
+
+<BaseLayout title={PAGES.blog.title}>
+    <header class="page-header">
+        <h1 class="page-title">{PAGES.blog.title}</h1>
+        <p class="page-subtitle">{PAGES.blog.subtitle}</p>
+    </header>
+
+    <section class="item-list">
+        {
+            posts.map((post) => (
+                <article class="card">
+                    <div class="card-content">
+                        <a
+                            href={post.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="card-title"
+                        >
+                            {post.title}
+                        </a>
+                        {post.date && (
+                            <div class="card-meta">
+                                <span class="flex items-center gap-1">
+                                    <Icon name="Calendar" size={24} />
+                                    <span>{post.date}</span>
+                                </span>
+                            </div>
+                        )}
+                        {post.description && (
+                            <p class="card-desc">{post.description}</p>
+                        )}
+                    </div>
+                    <div class="flex-shrink-0">
+                        <a
+                            href={post.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="card-link"
+                        >
+                            Read
+                        </a>
+                    </div>
+                </article>
+            ))
+        }
+        {
+            posts.length === 0 && (
+                <p class="body opacity-70">
+                    {feedError
+                        ? "Could not load posts right now — read them directly on Hashnode below."
+                        : "No posts published yet. Check back soon!"}
+                </p>
+            )
+        }
+    </section>
+
+    <div class="mt-8">
+        <a
+            href={HASHNODE_BLOG}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="card-link"
+        >
+            View all posts on Hashnode →
+        </a>
+    </div>
+</BaseLayout>

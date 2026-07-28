@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Icon from "../../components/ui/Icon.astro";
+import { PAGES, SOCIALS, SOCIAL_ICONS } from "../../config";
+
+if (PAGES.contact.isActive === false) {
+    return Astro.redirect("/404");
+}
+
+const activeSocials = SOCIALS.filter((s) => s.isActive);
+---
+
+<BaseLayout title={PAGES.contact.title}>
+    <header class="page-header">
+        <h1 class="page-title">{PAGES.contact.title}</h1>
+        <p class="page-subtitle">{PAGES.contact.subtitle}</p>
+    </header>
+
+    <div class="container-narrow">
+        <div class="prose mb-8">
+            <p>
+                Whether you have a question, a project idea, or just want to say
+                hello — my inbox is always open. The fastest way to reach me is
+                by email, but feel free to connect on any platform below.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {
+                activeSocials.map((social) => (
+                    <a
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.linkTitle}
+                        class="flex items-center gap-3 p-4 rounded-lg border border-border bg-surface transition-transform duration-200 hover:-translate-y-1"
+                    >
+                        <Icon
+                            name={SOCIAL_ICONS[social.name] || social.name}
+                            size={32}
+                        />
+                        <div class="flex flex-col">
+                            <span class="title-md">{social.name}</span>
+                            <span class="body-sm opacity-70">
+                                {social.linkTitle}
+                            </span>
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+
+        <div class="prose mt-8">
+            <p>
+                📍 Based in <strong>Kolkata, West Bengal, India</strong> — open
+                to remote opportunities, collaborations, and interesting
+                conversations.
+            </p>
+        </div>
+    </div>
+</BaseLayout>

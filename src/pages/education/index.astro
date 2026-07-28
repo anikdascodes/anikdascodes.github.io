@@ -1,0 +1,131 @@
+---
+import { getEntry, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Timeline from "../../components/ui/Timeline.astro";
+import Icon from "../../components/ui/Icon.astro";
+import { PAGES, SKILL_CATEGORIES } from "../../config";
+
+if (PAGES.education.isActive === false) {
+    return Astro.redirect("/404");
+}
+
+const educationEntry = await getEntry("education", "education");
+if (!educationEntry) {
+    throw new Error(
+        "Education content not found. Please ensure src/content/education.md exists.",
+    );
+}
+
+const { Content } = await render(educationEntry);
+const { education = [], courses = [] } = educationEntry.data;
+---
+
+<BaseLayout title={PAGES.education.title}>
+    <header class="page-header">
+        <h1 class="page-title">{PAGES.education.title}</h1>
+        <p class="page-subtitle">{PAGES.education.subtitle}</p>
+    </header>
+
+    <div class="container-narrow">
+        {
+            education.length > 0 && (
+                <section class="section">
+                    <h2 class="section-title border-b border-border pb-2">
+                        Education
+                    </h2>
+                    <Timeline items={education.map(edu => ({
+                        title: edu.degree,
+                        subtitle: edu.institution,
+                        period: edu.period,
+                        description: edu.description,
+                        logo: edu.logo
+                    }))} />
+                </section>
+            )
+        }
+
+        {
+            courses.length > 0 && (
+                <section class="section">
+                    <h2 class="section-title border-b border-border pb-2">
+                        Courses & Certifications
+                    </h2>
+                    <div class="flex flex-col gap-4 mt-4">
+                        {courses.map((course) => (
+                            <article class="card">
+                                <div class="card-content">
+                                    {course.url ? (
+                                        <a href={course.url} target="_blank" rel="noopener noreferrer" class="card-title">
+                                            {course.name}
+                                        </a>
+                                    ) : (
+                                        <span class="card-title">{course.name}</span>
+                                    )}
+                                    <div class="card-meta">
+                                        <span class="flex items-center gap-1">
+                                            <Icon name="Institution" size={24} />
+                                            <span>{course.provider}</span>
+                                        </span>
+                                        {course.year && (
+                                            <span class="flex items-center gap-1">
+                                                <Icon name="Calendar" size={24} />
+                                                <span>{course.year}</span>
+                                            </span>
+                                        )}
+                                    </div>
+                                    {course.description && (
+                                        <p class="card-desc">{course.description}</p>
+                                    )}
+                                </div>
+                                {course.url && (
+                                    <div class="flex-shrink-0">
+                                        <a href={course.url} target="_blank" rel="noopener noreferrer" class="card-link">
+                                            View
+                                        </a>
+                                    </div>
+                                )}
+                            </article>
+                        ))}
+                    </div>
+                </section>
+            )
+        }
+
+        {
+            SKILL_CATEGORIES.length > 0 && (
+                <section class="section">
+                    <h2 class="section-title border-b border-border pb-2">
+                        Skills
+                    </h2>
+                    <div class="flex flex-col gap-6 mt-4">
+                        {SKILL_CATEGORIES.map((category) => (
+                            <div>
+                                <h3 class="title-md mb-3">{category.title}</h3>
+                                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                                    {category.skills.map((skill) => (
+                                        <div class="flex flex-col items-center gap-2 p-4 rounded-lg border border-border bg-surface transition-transform duration-200 hover:-translate-y-1">
+                                            <img
+                                                src={`https://skillicons.dev/icons?i=${skill.icon}`}
+                                                alt={`${skill.name} logo`}
+                                                width="48"
+                                                height="48"
+                                                loading="lazy"
+                                            />
+                                            <span class="body-sm font-semibold text-center">
+                                                {skill.name}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            )
+        }
+
+        <div class="prose max-w-none">
+            <Content />
+        </div>
+    </div>
+</BaseLayout>

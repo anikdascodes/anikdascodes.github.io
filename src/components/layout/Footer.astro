@@ -1,0 +1,41 @@
+---
+import { SITE, THEME_CONFIG } from "../../config";
+import Icon from "../ui/Icon.astro";
+
+const currentYear = new Date().getFullYear();
+const showToggle = THEME_CONFIG.lightAndDark;
+---
+
+<footer class="footer">
+    <div class="flex items-center gap-4">
+        <span class="body-xs">&copy; <span data-footer-year>{currentYear}</span> {SITE.author}.</span>
+    </div>
+    <div class="flex items-center gap-4">
+        {
+            showToggle && (
+                <button
+                    id="theme-toggle"
+                    aria-label="Toggle Dark Mode"
+                    class="btn-icon"
+                >
+                    <Icon name="Sun" size={16} class="hidden dark:block" />
+                    <Icon name="Moon" size={16} class="block dark:hidden" />
+                </button>
+            )
+        }
+    </div>
+</footer>
+
+<script>
+    // Keep the copyright year in sync with the visitor's clock,
+    // even if the site hasn't been rebuilt since last year.
+    function updateFooterYear() {
+        const year = String(new Date().getFullYear());
+        document
+            .querySelectorAll("[data-footer-year]")
+            .forEach((el) => (el.textContent = year));
+    }
+
+    updateFooterYear();
+    document.addEventListener("astro:page-load", updateFooterYear);
+</script>
