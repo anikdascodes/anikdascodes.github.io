@@ -1,29 +1,30 @@
 # AGENTS.md
 
+> ⚠️ **READ `SKILL.md` FIRST.** It is the authoritative, up-to-date guide for AI
+> agents working on this site (site map, SEO rules, Hashnode blog integration,
+> content recipes, deployment constraints). This file is only a quick summary.
+
+## Quick facts
+
+- Personal portfolio of **Anik Das** — live at https://anikdascodes.github.io
+- Astro 6 + Tailwind CSS v4 + TypeScript, deployed via GitHub Actions (Pages)
+- Pages: About `/` · Projects · Education (incl. courses + skills) · Blog (Hashnode RSS) · Contact
+
 ## Commands
-- `npm run dev` - Start dev server
-- `npm run build` - Production build
+
+- `npm run dev` - Start dev server (localhost:4321)
+- `npm run build` - Production build (must pass before finishing any task)
 - `npm run preview` - Preview build
 
 ## Requirements
+
 - Node.js >= 22.12.0
 
-## Architecture
-- **Barrel files:** `src/config/index.ts`, `src/types/index.ts`
-- **Content:** `src/content/` - Add `.md` files to subdirectories (posts/, publications/, projects/, talks/, teaching/)
-- **Config:** `src/config/` - site.ts (SITE, THEME_CONFIG, SETTINGS, ANALYTICS), pages.ts (PAGES), navigation.ts (NAV_LINKS), social.ts (SOCIALS), themes.ts
-- **Types:** `src/types/` - content.ts (Bio, CVItem, etc.), display.ts (ListingItem, DetailItem), config.ts, themes.ts
-- **Styles:** `src/styles/global.css` - Theme colors, base styles
-- **Assets:** `src/assets/icons.ts` - Icon definitions
+## Hard rules (details in SKILL.md)
 
-## Key Constraints
-- **No `<style>` in `.astro` files** - Use global.css and Tailwind classes in components
-- **Two-column layout:** Left sidebar (sticky profile), Right main (scrollable content)
-- **Markdown-driven:** All content in `.md` files with YAML frontmatter
-- **Theme config:** Use `THEME_CONFIG` for theme settings (lightAndDark, themeLight, themeDark)
-
-## Notes
-- Tailwind CSS v4 uses `@tailwindcss/vite` plugin (no tailwind.config.js)
-- LaTeX math rendering via remark-math/rehype-katex
-- Analytics supported via GA4 (`ga4Id`) and Umami (`umami.websiteId`) — configure in `src/config/site.ts`
-- No lint/typecheck scripts configured
+1. **Never `git push`** — the owner pushes manually.
+2. **Never remove** Google Search Console verification (meta tag in `src/layouts/BaseLayout.astro`, file `public/googlec8391c95fcf8300e.html`).
+3. Never commit `node_modules/`, `dist/`, `.astro/`.
+4. No `<style>` in `.astro` files — Tailwind classes / `src/styles/global.css` only.
+5. Don't re-add removed template pages (publications, talks, teaching, CV, local posts, `/skills`).
+6. New pages need unique `title` + `description` passed to `BaseLayout` (SEO).
