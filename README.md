@@ -57,13 +57,8 @@ npm run dev     # http://localhost:4321
 │   ├── components/         # Sidebar, navbar, footer, timeline, cards, icons
 │   ├── pages/              # Routes: index, projects, education, blog, contact, tags
 │   └── styles/global.css   # Theme colors & base styles
-├── SKILL.md                # 🤖 Guide for AI agents editing this repo (read first!)
 └── .github/workflows/      # Build & deploy to GitHub Pages (push + daily cron)
 ```
-
-## 🤖 For AI agents
-
-If you're an AI coding agent working on this repository, **read [`SKILL.md`](SKILL.md) before making any changes.** It documents the full site map, SEO rules, the Hashnode integration, and hard constraints.
 
 ## 🙏 Credits
 
