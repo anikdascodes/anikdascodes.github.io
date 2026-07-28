@@ -1,117 +1,70 @@
-# 🎓 Academic Portfolio Astro
+# 👋 Anik Das — Personal Portfolio
 
 [![Astro](https://img.shields.io/badge/ASTRO-FF5D01?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build/)
 [![Tailwind](https://img.shields.io/badge/TAILWIND-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Deploy](https://github.com/anikdascodes/anikdascodes.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/anikdascodes/anikdascodes.github.io/actions/workflows/deploy.yml)
 
-![Page Screenshot](public/main_page.jpg)
+Personal portfolio and blog of **Anik Das** — Data Science & AI student from Kolkata, India.
 
-A fast, minimalist, and highly customizable Astro template designed specifically for researchers, professors, PhD students, and academics. 
+> 🌐 **Live site: [anikdascodes.github.io](https://anikdascodes.github.io)**
 
-Strongly inspired by [Academic Pages](https://github.com/academicpages/academicpages.github.io) and [AstroPaper](https://github.com/satnaing/astro-paper), this template prioritizes content readability, SEO discoverability, and ease of configuration without touching the UI code.
+## 📄 Pages
 
-> 🌟 **[View the Live Demo](https://astro-academics-page.vercel.app/)**
-
-## ✨ Features
-
-- **Markdown-Driven Collections:** Easily manage your `Bio`, `Blog`, `Publications`, `Projects`, `Talks`, `CV`, and `Teaching` experience purely through `.md` files, **no programming knowledge required**.
-- **Academic Standard Support:** Out-of-the-box $\LaTeX$ rendering support via `remark-math`/`rehype-katex`.
-- **Extensive Theming System:** Built-in Light/Dark mode toggle with a highly customizable underlying design system and several preset color palettes.
-- **Toggleable Sections:** Don't need a "Talks" or "Teaching" section? Disable them globally with a single boolean flag in your config.
-- **Peak Performance:** Built with Astro and Tailwind CSS v4 (via `@tailwindcss/vite`), yielding near-perfect Lighthouse scores and minimal client-side JavaScript.
-- **Analytics:** Includes native configuration options for self-hosted Umami analytics (`umami.websiteId`), as well as GA4 support (`ga4Id`).
-- **Two-Column Architecture:** Optimized layout with a sticky left profile sidebar and a scrollable main content area.
-
-## 🚀 Getting Started
-
-### 1. Bootstrap the Repository
-
-**Via GitHub CLI (Recommended):**
-```bash
-gh repo create my-portfolio --template="rubzip/academic-portfolio-astro" --clone
-cd my-portfolio
-```
-
-**Via Standard Git:**
-```bash
-git clone https://github.com/rubzip/academic-portfolio-astro.git my-portfolio
-cd my-portfolio
-```
-
-### 2. Install Dependencies
-This project uses Node.js (requires **Node.js >= 22.12.0**).
-```bash
-npm install
-```
-
-### 3. Start Development Server
-```bash
-npm run dev
-```
-Your local server will start at `http://localhost:4321`.
-
-## 📂 Architecture & Structure
-
-This project follows a centralized configuration architecture and is driven entirely by Markdown/MDX content.
-
-```text
-/
-├── public/                 # Static assets (images, favicon, robots.txt)
-├── src/
-│   ├── assets/             # Global icons (`icons.ts`)
-│   ├── components/         # Reusable Astro UI components (Tailwind classes used for styling)
-│   ├── config/             # ⚙️ ALL GLOBAL CONFIGURATION LIVES HERE
-│   │   ├── site.ts         # Meta details & Analytics (SITE, THEME_CONFIG, SETTINGS)
-│   │   ├── pages.ts        # Enable/Disable sections & subtitles (PAGES)
-│   │   ├── themes.ts       # Color palettes
-│   │   ├── navigation.ts   # Navbar links (NAV_LINKS)
-│   │   └── social.ts       # Social media links (SOCIALS)
-│   ├── content/            # 📝 ALL MARKDOWN CONTENT LIVES HERE
-│   │   ├── bio.md
-│   │   ├── cv.md
-│   │   ├── posts/
-│   │   ├── projects/
-│   │   ├── publications/
-│   │   ├── talks/
-│   │   └── teaching/
-│   ├── layouts/            # Page layout wrappers
-│   ├── pages/              # Astro routing
-│   ├── styles/             # Global CSS (`global.css` - Theme colors, base styles)
-│   └── types/              # TypeScript interfaces (content, display, config, themes)
-└── content.config.ts       # Zod schemas for all markdown collections
-```
-
-## 📖 Documentation & Setup
-
-For a comprehensive, step-by-step guide on how to configure your site, modify the design, and write new content, please refer to the dedicated setup post included in this template:
-
-**👉 [Setting up Your Academic Portfolio](src/content/posts/setting-up-portfolio.md)**
-
-
-## 📋 Configuration
-
-All configuration is managed centrally in the `src/config` directory. Modify these files to personalize your portfolio without touching any UI code:
-
-| File | Purpose |
+| Page | What's there |
 | :--- | :--- |
-| [`pages.ts`](src/config/pages.ts) | Enable/disable entire sections (e.g., `talks`, `teaching`) and set page subtitles. |
-| [`themes.ts`](src/config/themes.ts) | Define and manage all color palettes. Use `THEME_CONFIG` in `site.ts` to apply. |
-| [`site.ts`](src/config/site.ts) | Manage metadata, analytics keys (Umami/GA4), and critical file paths. |
-| [`navigation.ts`](src/config/navigation.ts) | Define the primary navigation bar links. |
-| [`social.ts`](src/config/social.ts) | Configure social media links appearing in the footer and header. |
+| **About** (`/`) | Who I am, what I do |
+| **Projects** (`/projects`) | Things I've built |
+| **Education** (`/education`) | Degrees, courses & certifications, and my skills |
+| **Blog** (`/blog`) | Latest posts, auto-synced from my [Hashnode blog](https://codeanik.hashnode.dev) |
+| **Contact** (`/contact`) | Email, GitHub, LinkedIn, X, Hashnode |
 
+## ✨ How it works
 
-## 🛠️ Build Commands
+- **Astro 6 + Tailwind CSS v4** — static site, minimal client-side JavaScript
+- **Markdown-driven content** — bio, projects, and education live in `src/content/*.md`
+- **Hashnode blog integration** — the Blog page fetches my Hashnode RSS feed at build time; a scheduled GitHub Actions rebuild (daily) keeps it fresh automatically
+- **Auto-deploy** — every push to `main` builds and deploys to GitHub Pages
+- **SEO-ready** — sitemap, Open Graph/Twitter cards, JSON-LD structured data, Google Search Console verified
+- **Light/Dark mode** — theme toggle in the footer
 
-All standard build commands run through `npm`:
+## 🚀 Run locally
+
+Requires **Node.js >= 22.12.0**.
+
+```bash
+git clone https://github.com/anikdascodes/anikdascodes.github.io.git
+cd anikdascodes.github.io
+npm install
+npm run dev     # http://localhost:4321
+```
 
 | Command | Action |
 | :--- | :--- |
-| `npm run dev` | Starts the local development server on `localhost:4321` |
-| `npm run build` | Builds your project for production output into `./dist/` |
-| `npm run preview` | Previews your production build locally |
-| `npm run format` | Runs Prettier on all files to format code |
+| `npm run dev` | Start the local dev server |
+| `npm run build` | Build for production into `./dist/` |
+| `npm run preview` | Preview the production build locally |
 
-## 🤝 Contributing
+## 📂 Project structure
 
-Contributions, issues, and feature requests are always welcome! Feel free to check the [issues page](https://github.com/rubzip/academic-portfolio-astro/issues).
+```text
+/
+├── public/                 # Static assets (avatar, favicons, og-image, logos/, robots.txt)
+├── src/
+│   ├── config/             # ⚙️ Site config: site.ts, pages.ts, navigation.ts, social.ts, skills.ts, themes.ts
+│   ├── content/            # 📝 Markdown content: bio.md, education.md, projects/
+│   ├── layouts/            # BaseLayout (SEO head), listing/detail wrappers
+│   ├── components/         # Sidebar, navbar, footer, timeline, cards, icons
+│   ├── pages/              # Routes: index, projects, education, blog, contact, tags
+│   └── styles/global.css   # Theme colors & base styles
+├── SKILL.md                # 🤖 Guide for AI agents editing this repo (read first!)
+└── .github/workflows/      # Build & deploy to GitHub Pages (push + daily cron)
+```
+
+## 🤖 For AI agents
+
+If you're an AI coding agent working on this repository, **read [`SKILL.md`](SKILL.md) before making any changes.** It documents the full site map, SEO rules, the Hashnode integration, and hard constraints.
+
+## 🙏 Credits
+
+Built on top of the excellent [academic-portfolio-astro](https://github.com/rubzip/academic-portfolio-astro) template by [@rubzip](https://github.com/rubzip), heavily customized.
